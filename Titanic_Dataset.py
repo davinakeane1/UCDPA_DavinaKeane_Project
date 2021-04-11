@@ -29,3 +29,13 @@ plt.xticks([0,1],['Did Not survive', 'Survived'])
 for i, value in enumerate(survived_figure.values):
     plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
 plt.show()
+
+#bar chart to see survived by passenger gender
+survived_gender = titanic_df.groupby('Sex')['Survived'].sum()
+plt.figure()
+plt.style.use('seaborn-darkgrid')
+plt.bar(survived_gender.index, survived_gender.values, color='lavender',  edgecolor='purple')
+plt.title('Survived By Gender')
+for i, value in enumerate(survived_gender.values):
+    plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
+plt.show()
