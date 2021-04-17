@@ -70,4 +70,11 @@ plt.xlabel('Age')
 plt.ylabel('Number of passengers')
 for i, bin in zip(ages_histogram[0], range(9)):
     plt.text(bin, i+3, str(int(i)), color='black', fontsize=10, style='oblique', horizontalalignment='center')
-plt.show()
+#plt.show()
+
+#Passnger class and surivial rates
+#print(titanic_df[['Pclass', 'Survived']].groupby(['Pclass'], as_index=False).mean().sort_values(by='Survived', ascending=False))
+
+#Dropping the NaN from the Fare column
+titanic_df = titanic_df.dropna(subset=['Fare'])
+
