@@ -78,3 +78,16 @@ for i, bin in zip(ages_histogram[0], range(9)):
 #Dropping the NaN from the Fare column
 titanic_df = titanic_df.dropna(subset=['Fare'])
 
+#Box plot of the fare distribution data
+plt.figure(figsize=(14,8))
+plt.title("Fare Range")
+plt.boxplot(titanic_df["Fare"], vert=False)
+plt.show()
+
+#Violin plot of the fare distribution data
+plt.figure(figsize=(14,8))
+plt.title("Fare Range")
+plt.violinplot(titanic_df["Fare"], vert=False)
+#plt.show()
+
+print(titanic_df["Fare"].describe())
