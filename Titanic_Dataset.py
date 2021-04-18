@@ -153,7 +153,23 @@ queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titani
 #print(titanic_df.nunique())
 
 #Filling in the missing values in the Aged column using the median value
-titanic_df["Age"] = titanic_df["Age"].fillna((titanic_df["Age"].median()))
+passenger_ages_withmedian = titanic_df["Age"] = titanic_df["Age"].fillna((titanic_df["Age"].median()))
 
 #Checking the above worked
-#print(titanic_df.isnull().sum())
+#print(titanic_df["Age"].isnull().sum())
+
+#histogram using histogram function from Numpy - with median value filled in for NaN
+ages_histogram_withmedian = np.histogram(passenger_ages_withmedian, bins=[0,10,20,30,40,50,60,70,80,90, 100])
+
+#Created labels to make histogram more readable - with median value filled in for NaN in data
+ages_histogram_labels_withmedian = ["0–10", "11–20", "21–30", "31–40", "41–50", "51–60", "61–70", "71–80", "81–90", "91-100"]
+
+#histogram to see passenger age groups - with median value filled in for NaN
+plt.figure(figsize=(8,8))
+plt.title("Passenger Age Groups- using median for NaN")
+plt.bar(ages_histogram_labels_withmedian, ages_histogram_withmedian[0], color="black",  edgecolor="grey")
+plt.xlabel("Age")
+plt.ylabel("Number of passengers - using median for NaN")
+for i, bin in zip(ages_histogram_withmedian[0], range(9)):
+    plt.text(bin, i+3, str(int(i)), color="grey", fontsize=10, style="oblique", horizontalalignment="center")
+#plt.show()
