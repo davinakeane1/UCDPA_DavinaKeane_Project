@@ -173,3 +173,8 @@ plt.ylabel("Number of passengers - using median for NaN")
 for i, bin in zip(ages_histogram_withmedian[0], range(9)):
     plt.text(bin, i+3, str(int(i)), color="grey", fontsize=10, style="oblique", horizontalalignment="center")
 #plt.show()
+
+#Catplot boxplot to show the average ages of the passengers in each class
+AverageAgePerClass = sns.catplot(data = titanic_df , x = 'Pclass' , y = 'Age', kind = 'box', palette="Set3")
+sns.set_theme(style="ticks")
+#plt.show()
