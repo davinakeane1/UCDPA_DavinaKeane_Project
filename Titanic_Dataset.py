@@ -82,7 +82,7 @@ titanic_df = titanic_df.dropna(subset=['Fare'])
 plt.figure(figsize=(14,8))
 plt.title("Fare Range")
 plt.boxplot(titanic_df["Fare"], vert=False)
-plt.show()
+#plt.show()
 
 #Violin plot of the fare distribution data
 plt.figure(figsize=(14,8))
@@ -90,4 +90,25 @@ plt.title("Fare Range")
 plt.violinplot(titanic_df["Fare"], vert=False)
 #plt.show()
 
-print(titanic_df["Fare"].describe())
+#Seeing description of Fare column
+#print(titanic_df["Fare"].describe())
+
+#To see rows where the passengers embarked from Cherbourg
+cherbourg_passengers = titanic_df.loc[titanic_df["Embarked"]=="C"]
+print(cherbourg_passengers)
+
+#To see the unique values from Embarked column
+#print(titanic_df['Embarked'].unique())
+
+##To see the passenger embarked from (has 3 values), grouped dataframe by Embarked values and used count for number
+passenger_embarked_count = titanic_df.groupby('Embarked')['Embarked'].count()
+#print(passenger_embarked_count)
+
+#Pie chart to see the passenger embarked from distribution
+plt.figure()
+colors = ['#ff6666', '#ffcc99', '#99ff99']
+plt.title("Embarked From")
+plt.pie(passenger_embarked_count.values, labels=["C", "Q", "S"], textprops={"fontsize":12}, autopct="%1.1f%%", colors = colors)
+plt.tight_layout()
+#plt.show()
+
