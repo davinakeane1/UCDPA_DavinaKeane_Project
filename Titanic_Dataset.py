@@ -119,8 +119,41 @@ queens_passengers = titanic_df.loc[titanic_df["Embarked"]=="Q"]
 
 #Male Passengers embarking from Queenstown
 age_queens_male = titanic_df.loc[(titanic_df["Sex"] == "male") & (titanic_df["Embarked"]=="Q")]
-print(age_queens_male)
+#print(age_queens_male)
 
 #Female Passengers embarking from Queenstown
 age_queens_female = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q")]
-print(age_queens_female)
+#print(age_queens_female)
+
+#Passengers embarking from Queenstown class 1 & 2 breakdown
+queens_class_1_2 = titanic_df.loc[(titanic_df["Pclass"] <= 2) & (titanic_df["Embarked"]=="Q")]
+#print(queens_class_1_2)
+
+#Passengers embarking from Queenstown class 3 breakdown
+queens_class_3 = titanic_df.loc[(titanic_df["Pclass"] == 3) & (titanic_df["Embarked"]=="Q")]
+#print(queens_class_3)
+
+#Class of the females embarking from Queenstown
+queens_female_class = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] >= 3)]
+#print(queens_female_class)
+
+#Class of the males embarking from Queenstown
+queens_male_class = titanic_df.loc[(titanic_df["Sex"] == "male") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] >= 1)]
+#print(queens_male_class)
+
+#First class of the females embarking from Queenstown
+queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] == 1)]
+#print(queens_female_class_1)
+
+#Using .iterrows() to print out each passengers namd and what class the were in
+#for index, row in titanic_df.iterrows():
+    #print(row[3], 'was in class', row[2])
+
+#shows the unique values in the dataframe
+#print(titanic_df.nunique())
+
+#Filling in the missing values in the Aged column using the median value
+titanic_df["Age"] = titanic_df["Age"].fillna((titanic_df["Age"].median()))
+
+#Checking the above worked
+#print(titanic_df.isnull().sum())
