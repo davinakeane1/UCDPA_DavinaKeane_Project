@@ -93,10 +93,6 @@ plt.violinplot(titanic_df["Fare"], vert=False)
 #Seeing description of Fare column
 #print(titanic_df["Fare"].describe())
 
-#To see rows where the passengers embarked from Cherbourg
-cherbourg_passengers = titanic_df.loc[titanic_df["Embarked"]=="C"]
-print(cherbourg_passengers)
-
 #To see the unique values from Embarked column
 #print(titanic_df['Embarked'].unique())
 
@@ -104,11 +100,27 @@ print(cherbourg_passengers)
 passenger_embarked_count = titanic_df.groupby('Embarked')['Embarked'].count()
 #print(passenger_embarked_count)
 
-#Pie chart to see the passenger embarked from distribution
-plt.figure()
-colors = ['#ff6666', '#ffcc99', '#99ff99']
-plt.title("Embarked From")
-plt.pie(passenger_embarked_count.values, labels=["C", "Q", "S"], textprops={"fontsize":12}, autopct="%1.1f%%", colors = colors)
-plt.tight_layout()
+#bar chart to see passengers embarked from
+plt.figure(figsize=(8,8))
+plt.style.use('seaborn-darkgrid')
+plt.bar(passenger_embarked_count.index, passenger_embarked_count.values, color='grey',  edgecolor='black')
+plt.title('Passengers Embarked From')
+for i, value in enumerate(passenger_embarked_count.values):
+    plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
 #plt.show()
 
+#Rows where the passengers embarked from Cherbourg
+cherbourg_passengers = titanic_df.loc[titanic_df["Embarked"]=="C"]
+#print(cherbourg_passengers)
+
+#Rows where the passengers embarked from Queenstown
+queens_passengers = titanic_df.loc[titanic_df["Embarked"]=="Q"]
+#print(queens_passengers)
+
+#Male Passengers embarking from Queenstown
+age_queens_male = titanic_df.loc[(titanic_df["Sex"] == "male") & (titanic_df["Embarked"]=="Q")]
+print(age_queens_male)
+
+#Female Passengers embarking from Queenstown
+age_queens_female = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q")]
+print(age_queens_female)
