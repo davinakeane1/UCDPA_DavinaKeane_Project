@@ -222,7 +222,15 @@ plt.yticks(rotation=30)
 ax.set_title("No NaN values in Age Column")
 plt.show()
 
+#checking the NaN values in Cabin column
 #print(titanic_df["Cabin"].isnull().sum())
 #print(titanic_df["Cabin"].shape)
 
+#Checking the shape of the data
+#print(titanic_df.shape)
+
+#Droppping the Cabin column from the dataframe
+titanic_df.drop(["Cabin"], axis="columns", inplace=True)
+
+#Checking the shape of the data
 print(titanic_df.shape)
