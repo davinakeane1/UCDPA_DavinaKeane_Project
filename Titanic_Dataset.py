@@ -178,3 +178,30 @@ for i, bin in zip(ages_histogram_withmedian[0], range(9)):
 AverageAgePerClass = sns.catplot(data = titanic_df , x = 'Pclass' , y = 'Age', kind = 'box', palette="Set3")
 sns.set_theme(style="ticks")
 #plt.show()
+
+#Getting Pclass 1 mean
+titanic_df[titanic_df['Pclass'] == 1]['Age'].mean()
+
+#Getting Pclass 2 mean
+titanic_df[titanic_df['Pclass'] == 2]['Age'].mean()
+
+#Getting Pclass 3 mean
+titanic_df[titanic_df['Pclass'] == 3]['Age'].mean()
+
+# CUSTOM FUNCTION - Imputation for missing age variables
+def impute_null_age_vaues(cols):
+    passenger_age = cols[0]
+    passenger_c = cols[1]
+
+    if pd.isnull(passenger_age):
+        if (passenger_c == 1):
+            return titanic_df[titanic_df['Pclass'] == 1]['Age'].mean()
+        elif (passenger_c == 2):
+            return titanic_df[titanic_df['Pclass'] == 2]['Age'].mean()
+        elif (passenger_c == 3):
+            return titanic_df[titanic_df['Pclass'] == 3]['Age'].mean()
+    else:
+        return passenger_age
+
+#Applying custom function to the dataset
+titanic_df['Age'] = titanic_df[['Age', 'Pclass']].apply(impute_null_age_vaues, axis = 1)
