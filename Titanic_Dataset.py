@@ -13,8 +13,23 @@ os.chdir(r"C:\Users\College\Desktop\DataAnalytics")
 #loading in the csv file
 titanic_df = pd.read_csv("tested.csv", encoding = "ISO-8859-1")
 
-#Shows NaN values - Add a print statement to show
-titanic_df.isnull().sum()
+#prints  first 5 rows of data
+print(titanic_df.head)
+
+#prints column names
+print(titanic_df.columns.values)
+
+#prints how many rows and columns in the dataset
+print(titanic_df.shape)
+
+#prints the data types of the columns
+print(titanic_df.dtypes)
+
+#prints the unique values in the columns of the dataset
+print(titanic_df.nunique())
+
+#Shows the number of NaN values in the dataset
+print(titanic_df.isnull().sum())
 
 #See survived (1) vs not survived (0), grouped dataframe by Survived values and used count for number
 survived_figure = titanic_df.groupby('Survived')['Survived'].count()
@@ -161,8 +176,8 @@ queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titani
 #print(queens_female_class_1)
 
 #Using .iterrows() to print out each passengers namd and what class the were in
-#for index, row in titanic_df.iterrows():
-    #print(row[3], 'was in class', row[2])
+for index, row in titanic_df.iterrows():
+    print(row[3], "was in class", row[2])
 
 #shows the unique values in the dataframe
 #print(titanic_df.nunique())
