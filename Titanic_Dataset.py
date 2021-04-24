@@ -64,12 +64,12 @@ ages_histogram_labels = ["0–10", "11–20", "21–30", "31–40", "41–50", "
 
 #histogram to see passenger age groups
 plt.figure(figsize=(8,8))
-plt.title('Passenger Age Groups')
-plt.bar(ages_histogram_labels, ages_histogram[0], color='grey',  edgecolor='black')
-plt.xlabel('Age')
-plt.ylabel('Number of passengers')
+plt.title("Passenger Age Groups")
+plt.bar(ages_histogram_labels, ages_histogram[0], color="grey",  edgecolor="black")
+plt.xlabel("Age")
+plt.ylabel("Number of passengers")
 for i, bin in zip(ages_histogram[0], range(9)):
-    plt.text(bin, i+3, str(int(i)), color='black', fontsize=10, style='oblique', horizontalalignment='center')
+    plt.text(bin, i+3, str(int(i)), color="black", fontsize=10, style="oblique", horizontalalignment="center")
 plt.show()
 
 #Passnger class and surivial rates
