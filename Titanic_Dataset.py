@@ -78,13 +78,16 @@ pclass_survival_mean = titanic_df[['Pclass', 'Survived']].groupby(['Pclass'], as
 #using round to round  off figure to 2 decimal places
 print(round(pclass_survival_mean, 2))
 
-
 #Catplot to see passnger class and surivial rates
 g = sns.catplot(x="Survived", y="Survived", hue="Pclass", col="Survived", data=pclass_survival_mean, kind="bar");
 plt.show()
 
-#Catplot to see passnger class and surivial rates
+#Catplot to see passnger class and surivial rates using pclass_survival_mean
 sns.catplot(x="Survived",data=pclass_survival_mean,kind="count",hue="Pclass")
+plt.show()
+
+#Catplot to see passnger class and surivial rates using whole dataframe
+sns.catplot(x="Survived",data=titanic_df,kind="count",hue="Pclass")
 plt.show()
 
 #Dropping the NaN from the Fare column
