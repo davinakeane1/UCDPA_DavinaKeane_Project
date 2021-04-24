@@ -72,8 +72,20 @@ for i, bin in zip(ages_histogram[0], range(9)):
     plt.text(bin, i+3, str(int(i)), color="black", fontsize=10, style="oblique", horizontalalignment="center")
 plt.show()
 
+
+
 #Passnger class and surivial rates
-#print(titanic_df[['Pclass', 'Survived']].groupby(['Pclass'], as_index=False).mean().sort_values(by='Survived', ascending=False))
+pclass_survival_mean = titanic_df[['Pclass', 'Survived']].groupby(['Pclass'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+print(pclass_survival_mean)
+
+#Catplot to see passnger class and surivial rates
+g = sns.catplot(x="Survived", y="Survived", hue="Pclass", col="Survived", data=pclass_survival_mean, kind="bar");
+plt.show()
+
+#Catplot to see passnger class and surivial rates
+sns.catplot("Survived",data=pclass_survival_mean,kind="count",hue="Pclass")
+plt.show()
+
 
 #Dropping the NaN from the Fare column
 titanic_df = titanic_df.dropna(subset=['Fare'])
