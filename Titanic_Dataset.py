@@ -33,7 +33,7 @@ print(titanic_df.isnull().sum())
 
 #See survived (1) vs not survived (0), grouped dataframe by Survived values and used count for number
 survived_figure = titanic_df.groupby('Survived')['Survived'].count()
-#print(survived_figure)
+print(survived_figure)
 
 #bar chart to see survived vs not survived
 plt.figure()
@@ -57,7 +57,7 @@ plt.show()
 
 #To see the passenger class (has 3 values), grouped dataframe by Pcalss values and used count for number
 passenger_class_count = titanic_df.groupby('Pclass')['Pclass'].count()
-#print(passenger_class_count)
+print(passenger_class_count)
 
 #Pie chart to see the passenger class distribution
 plt.figure()
@@ -69,7 +69,7 @@ plt.show()
 
 #All not NaN values in Age stored to Numpy array called passenger_ages
 passenger_ages = titanic_df[titanic_df['Age'].notnull()]['Age'].values
-#print(passenger_ages.shape)
+print(passenger_ages.shape)
 
 #histogram using histogram function from Numpy
 ages_histogram = np.histogram(passenger_ages, bins=[0,10,20,30,40,50,60,70,80,90, 100])
@@ -121,14 +121,14 @@ plt.violinplot(titanic_df["Fare"], vert=False)
 plt.show()
 
 #Seeing description of Fare column
-#print(titanic_df["Fare"].describe())
+print(titanic_df["Fare"].describe())
 
 #To see the unique values from Embarked column
-#print(titanic_df['Embarked'].unique())
+print(titanic_df['Embarked'].unique())
 
 ##To see the passenger embarked from (has 3 values), grouped dataframe by Embarked values and used count for number
 passenger_embarked_count = titanic_df.groupby('Embarked')['Embarked'].count()
-#print(passenger_embarked_count)
+print(passenger_embarked_count)
 
 #bar chart to see passengers embarked from
 plt.figure(figsize=(8,8))
@@ -141,46 +141,46 @@ plt.show()
 
 #Rows where the passengers embarked from Cherbourg
 cherbourg_passengers = titanic_df.loc[titanic_df["Embarked"]=="C"]
-#print(cherbourg_passengers)
+print(cherbourg_passengers)
 
 #Rows where the passengers embarked from Queenstown
 queens_passengers = titanic_df.loc[titanic_df["Embarked"]=="Q"]
-#print(queens_passengers)
+print(queens_passengers)
 
 #Male Passengers embarking from Queenstown
 age_queens_male = titanic_df.loc[(titanic_df["Sex"] == "male") & (titanic_df["Embarked"]=="Q")]
-#print(age_queens_male)
+print(age_queens_male)
 
 #Female Passengers embarking from Queenstown
 age_queens_female = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q")]
-#print(age_queens_female)
+print(age_queens_female)
 
 #Passengers embarking from Queenstown class 1 & 2 breakdown
 queens_class_1_2 = titanic_df.loc[(titanic_df["Pclass"] <= 2) & (titanic_df["Embarked"]=="Q")]
-#print(queens_class_1_2)
+print(queens_class_1_2)
 
 #Passengers embarking from Queenstown class 3 breakdown
 queens_class_3 = titanic_df.loc[(titanic_df["Pclass"] == 3) & (titanic_df["Embarked"]=="Q")]
-#print(queens_class_3)
+print(queens_class_3)
 
 #Class of the females embarking from Queenstown
 queens_female_class = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] >= 3)]
-#print(queens_female_class)
+print(queens_female_class)
 
 #Class of the males embarking from Queenstown
 queens_male_class = titanic_df.loc[(titanic_df["Sex"] == "male") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] >= 1)]
-#print(queens_male_class)
+print(queens_male_class)
 
 #First class of the females embarking from Queenstown
 queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] == 1)]
-#print(queens_female_class_1)
+print(queens_female_class_1)
 
 #Using .iterrows() to print out each passengers namd and what class the were in
 for index, row in titanic_df.iterrows():
     print(row[3], "was in class", row[2])
 
 #shows the unique values in the dataframe
-#print(titanic_df.nunique())
+print(titanic_df.nunique())
 
 #Heatmap to show missing values in dataset - before inputting missing age values
 ax = plt.axes()
@@ -194,7 +194,7 @@ plt.show()
 passenger_ages_withmedian = titanic_df["Age"] = titanic_df["Age"].fillna((titanic_df["Age"].median()))
 
 #Checking the above worked
-#print(titanic_df["Age"].isnull().sum())
+print(titanic_df["Age"].isnull().sum())
 
 #histogram using histogram function from Numpy - with median value filled in for NaN
 ages_histogram_withmedian = np.histogram(passenger_ages_withmedian, bins=[0,10,20,30,40,50,60,70,80,90, 100])
@@ -253,14 +253,14 @@ ax.set_title("No NaN values in Age Column")
 plt.show()
 
 #checking the NaN values in Cabin column
-#print(titanic_df["Cabin"].isnull().sum())
-#print(titanic_df["Cabin"].shape)
+print(titanic_df["Cabin"].isnull().sum())
+print(titanic_df["Cabin"].shape)
 
 #Checking the shape of the data
-#print(titanic_df.shape)
+print(titanic_df.shape)
 
 #Droppping the Cabin column from the dataframe
 titanic_df.drop(["Cabin"], axis="columns", inplace=True)
 
-#Checking the shape of the data
+#Checking the shape of the data after dropping Cabin column
 print(titanic_df.shape)
