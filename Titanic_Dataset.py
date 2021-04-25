@@ -123,20 +123,23 @@ plt.show()
 #Seeing description of Fare column
 print(titanic_df["Fare"].describe())
 
+#Seeing description of Embarked column
+print(titanic_df["Embarked"].describe())
+
 #To see the unique values from Embarked column
-print(titanic_df['Embarked'].unique())
+print(titanic_df["Embarked"].unique())
 
 ##To see the passenger embarked from (has 3 values), grouped dataframe by Embarked values and used count for number
-passenger_embarked_count = titanic_df.groupby('Embarked')['Embarked'].count()
+passenger_embarked_count = titanic_df.groupby("Embarked")["Embarked"].count()
 print(passenger_embarked_count)
 
-#bar chart to see passengers embarked from
+#bar chart to see passengers embarked from, using //2 on value label to centre the box (bbox) labels
 plt.figure(figsize=(8,8))
-plt.style.use('seaborn-darkgrid')
-plt.bar(passenger_embarked_count.index, passenger_embarked_count.values, color='grey',  edgecolor='black')
-plt.title('Passengers Embarked From')
+plt.style.use("seaborn-darkgrid")
+plt.bar(passenger_embarked_count.index, passenger_embarked_count.values, color="grey",  edgecolor="black")
+plt.title("Passengers Embarked From")
 for i, value in enumerate(passenger_embarked_count.values):
-    plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
+    plt.text(i, value-60//2, str(value), ha = "center", color="black", fontsize=10, style="oblique", horizontalalignment="center", bbox = dict(facecolor = "white", alpha = .5))
 plt.show()
 
 #Rows where the passengers embarked from Cherbourg
