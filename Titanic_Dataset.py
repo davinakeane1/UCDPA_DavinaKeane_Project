@@ -37,22 +37,22 @@ print(survived_figure)
 
 #bar chart to see survived vs not survived
 plt.figure()
-plt.style.use('seaborn-darkgrid')
-plt.bar(survived_figure.index, survived_figure.values, color='lavender',  edgecolor='purple')
-plt.title('Survived vs Did Not survive')
-plt.xticks([0,1],['Did Not survive', 'Survived'])
+plt.style.use("seaborn-darkgrid")
+plt.bar(survived_figure.index, survived_figure.values, color="lavender",  edgecolor="purple")
+plt.title("Survived vs Did Not survive")
+plt.xticks([0,1],["Did Not survive", "Survived"])
 for i, value in enumerate(survived_figure.values):
-    plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
+    plt.text(i, value-60, str(value), color="black", fontsize=10, style="oblique", horizontalalignment="center")
 plt.show()
 
 #bar chart to see survived by the passenger genders
-survived_gender = titanic_df.groupby('Sex')['Survived'].sum()
+survived_gender = titanic_df.groupby("Sex")["Survived"].sum()
 plt.figure()
-plt.style.use('seaborn-darkgrid')
-plt.bar(survived_gender.index, survived_gender.values, color='lavender',  edgecolor='purple')
-plt.title('Survived By Gender')
+plt.style.use("seaborn-darkgrid")
+plt.bar(survived_gender.index, survived_gender.values, color="lavender",  edgecolor="purple")
+plt.title("Survived By Gender")
 for i, value in enumerate(survived_gender.values):
-    plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
+    plt.text(i, value-60, str(value), color="black", fontsize=10, style="oblique", horizontalalignment="center")
 plt.show()
 
 
@@ -60,7 +60,7 @@ plt.show()
 age_survived = sns.FacetGrid(titanic_df, col="Survived")
 age_survived = age_survived.map(sns.histplot, "Age", kde=True, stat="density", linewidth=0)
 
-#Usin Kernel Distribution Estimation Plot (KDE plot) to see distribution of passengers ages between the survived and did not survive passengers
+#Using Kernel Distribution Estimation Plot (KDE plot) to see distribution of passengers ages between the survived and did not survive passengers
 age_fig = sns.FacetGrid(titanic_df, hue = "Survived", aspect = 4, palette="crest")
 age_fig.map(sns.kdeplot, "Age" , shade = True)
 age_fig.set(xlim = (0, titanic_df["Age"].max()))
@@ -205,7 +205,7 @@ queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titani
 print(queens_female_class_1)
 
 #Implot to see how age and embarked affected survival
-sns.lmplot(x="Age", y="Survived",data=titanic_df,hue="Embarked")
+sns.lmplot(x="Age", y="Survived", data=titanic_df, hue="Embarked")
 plt.show()
 
 
