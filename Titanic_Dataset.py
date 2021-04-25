@@ -87,6 +87,10 @@ for i, bin in zip(ages_histogram[0], range(9)):
     plt.text(bin, i+3, str(int(i)), color="black", fontsize=10, style="oblique", horizontalalignment="center")
 plt.show()
 
+#Implot to see how age and class affect surivial
+sns.lmplot(x="Age",y="Survived",data=titanic_df,hue="Pclass")
+plt.show()
+
 
 #Passnger class and surivial rates
 pclass_survival_mean = titanic_df[['Pclass', 'Survived']].groupby(['Pclass'], as_index=False).mean().sort_values(by='Survived', ascending=False)
