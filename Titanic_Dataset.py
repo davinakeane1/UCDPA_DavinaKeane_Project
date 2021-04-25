@@ -241,7 +241,7 @@ def impute_null_age_vaues(cols):
     else:
         return passenger_age
 
-#Applying custom function to the dataset
+#Applying custom function to the dataset to impute the mean values over the NaN values of the age column
 titanic_df["Age"] = titanic_df[["Age", "Pclass"]].apply(impute_null_age_vaues, axis = 1)
 
 #Heatmap to show missing values in dataset - AFTER inputting missing age values
@@ -262,5 +262,5 @@ print(titanic_df.shape)
 #Droppping the Cabin column from the dataframe
 titanic_df.drop(["Cabin"], axis="columns", inplace=True)
 
-#Checking the shape of the data after dropping Cabin column
+#Checking the shape of the data after droping Cabin column
 print(titanic_df.shape)
