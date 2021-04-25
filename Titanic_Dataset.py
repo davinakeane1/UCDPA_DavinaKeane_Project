@@ -60,6 +60,12 @@ plt.show()
 age_survived = sns.FacetGrid(titanic_df, col="Survived")
 age_survived = age_survived.map(sns.histplot, "Age", kde=True, stat="density", linewidth=0)
 
+#Usin Kernel Distribution Estimation Plot (KDE plot) to see distribution of passengers ages between the survived and did not survive passengers
+age_fig = sns.FacetGrid(titanic_df, hue = "Survived", aspect = 4, palette="crest")
+age_fig.map(sns.kdeplot, "Age" , shade = True)
+age_fig.set(xlim = (0, titanic_df["Age"].max()))
+age_fig.add_legend()
+
 
 #To see the passenger gender (has 2 values), grouped dataframe by Sex values and used count for number
 gender_sur_count = titanic_df.groupby("Sex")["Sex"].count()
