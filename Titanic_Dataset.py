@@ -55,6 +55,22 @@ for i, value in enumerate(survived_gender.values):
     plt.text(i, value-60, str(value), color='black', fontsize=10, style='oblique', horizontalalignment='center')
 plt.show()
 
+
+#seeing the distribution of passengers ages between the survived and did not survive passengers
+age_survived = sns.FacetGrid(titanic_df, col="Survived")
+age_survived = age_survived.map(sns.histplot, "Age", kde=True, stat="density", linewidth=0)
+
+
+#To see the passenger gender (has 2 values), grouped dataframe by Sex values and used count for number
+gender_sur_count = titanic_df.groupby("Sex")["Sex"].count()
+
+#pie chart to show genders
+plt.figure(figsize=(8,8))
+plt.title("Grouped by gender")
+plt.pie(gender_sur_count.values, labels=["male", "female"], autopct="%1.1f%%", textprops={"fontsize":14})
+plt.show()
+
+
 #To see the passenger class (has 3 values), grouped dataframe by Pcalss values and used count for number
 passenger_class_count = titanic_df.groupby('Pclass')['Pclass'].count()
 print(passenger_class_count)
@@ -181,6 +197,11 @@ print(queens_male_class)
 #First class of the females embarking from Queenstown
 queens_female_class_1 = titanic_df.loc[(titanic_df["Sex"] == "female") & (titanic_df["Embarked"]=="Q") & (titanic_df["Pclass"] == 1)]
 print(queens_female_class_1)
+
+#Implot to see how age and embarked affected survival
+sns.lmplot(x="Age", y="Survived",data=titanic_df,hue="Embarked")
+plt.show()
+
 
 #Using .iterrows() to print out each passengers namd and what class the were in
 for index, row in titanic_df.iterrows():
